@@ -11,9 +11,10 @@ namespace FakeBookApi.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Categories>()
+            modelBuilder.Entity<Category>()
                 .Property(b => b.Name)
                 .IsRequired();
         }
+        public DbSet<Category> Categories { get; set; }
     }
 }

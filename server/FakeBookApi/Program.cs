@@ -3,7 +3,7 @@ using FakeBookApi.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddScoped<CategoriesService>();
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options => {
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");

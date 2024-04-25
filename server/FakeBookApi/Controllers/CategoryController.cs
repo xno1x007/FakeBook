@@ -7,19 +7,17 @@ namespace FakeBookApi.Controllers;
 [Route("[controller]")]
 public class CategoryController : ControllerBase
 {
-    private readonly ILogger<CategoryController> _logger;
+    private readonly CategoriesService _categoriesService;
 
-    public CategoryController(ILogger<CategoryController> logger)
+    public CategoryController(CategoriesService categoriesService)
     {
-        _logger = logger;
+        _categoriesService = categoriesService;
     }
 
-    [HttpGet(Name = "GetWeatherForecast")]
-    public IEnumerable<Categories> Get()
-    {
-        return Enumerable.Range(1, 5).Select(index => new Categories
-        {
-        })
-        .ToArray();
+    [HttpGet]
+    public async Task<IActionResult> Get() {
+        var data = await _categoriesService.GetAsync();
+        var result = new { data = data };
+        return Ok(result);
     }
 }
